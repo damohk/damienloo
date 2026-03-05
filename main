@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Damien Loo — Bioengineering @ UCSD</title>
+    <meta name="description" content="Damien Loo — UCSD bioengineering student. Projects in bioinstrumentation, biomechanics, and imaging." />
+    <style>
+      :root{
+        --bg: #0b1020;
+        --card: rgba(255,255,255,0.06);
+        --text: rgba(255,255,255,0.92);
+        --muted: rgba(255,255,255,0.72);
+        --muted2: rgba(255,255,255,0.58);
+        --border: rgba(255,255,255,0.12);
+        --shadow: 0 20px 60px rgba(0,0,0,0.45);
+        --accent: #7c5cff;
+        --accent2: #2ee59d;
+        --radius: 18px;
+        --max: 1060px;
+      }
+      *{ box-sizing:border-box; }
+      html{ scroll-behavior:smooth; }
+      body{
+        margin:0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 600px at 15% 15%, rgba(124,92,255,0.35), transparent 55%),
+          radial-gradient(1000px 500px at 85% 20%, rgba(46,229,157,0.20), transparent 55%),
+          radial-gradient(900px 500px at 50% 90%, rgba(124,92,255,0.16), transparent 60%),
+          var(--bg);
+        line-height:1.55;
+      }
+      a{ color: inherit; text-decoration:none; }
+      .container{ width:min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+
+      /* nav */
+      .nav{
+        position: sticky; top: 0; z-index: 20;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: rgba(11,16,32,0.55);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner{
+        display:flex; align-items:center; justify-content:space-between;
+        padding: 14px 0; gap: 16px;
+      }
+      .brand{ display:flex; align-items:center; gap: 10px; font-weight: 800; }
+      .dot{
+        width: 10px; height: 10px; border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        box-shadow: 0 0 0 4px rgba(124,92,255,0.18);
+      }
+      .pill{
+        font-size: 12px; padding: 6px 10px; border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .nav-links{
+        display:flex; gap: 14px; align-items:center;
+        color: var(--muted); font-weight: 700; font-size: 14px;
+      }
+      .nav-links a{ padding: 8px 10px; border-radius: 12px; border: 1px solid transparent; }
+      .nav-links a:hover{
+        color: var(--text);
+        border-color: var(--border);
+        background: rgba(255,255,255,0.04);
+      }
+      .cta{ display:flex; gap: 10px; align-items:center; }
+      .btn{
+        display:inline-flex; align-items:center; justify-content:center;
+        padding: 10px 12px; border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        font-weight: 800; font-size: 14px; gap: 8px;
+        transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      }
+      .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); }
+      .btn.primary{
+        border-color: rgba(124,92,255,0.55);
+        background: linear-gradient(135deg, rgba(124,92,255,0.20), rgba(46,229,157,0.12));
+      }
+      .btn.primary:hover{ border-color: rgba(124,92,255,0.8); }
+
+      /* hero */
+      header{ padding: 44px 0 22px; }
+      .hero{
+        display:grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+      .panel{
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      .hero-left{ padding: 28px; }
+      h1{
+        margin: 12px 0 10px;
+        font-size: clamp(28px, 3.4vw, 44px);
+        line-height: 1.12;
+        letter-spacing: -0.6px;
+      }
+      .sub{
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 16px;
+        max-width: 65ch;
+      }
+      .hero-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+
+      .quick{ padding: 18px; display:flex; flex-direction: column; justify-content: space-between; }
+      .avatar{
+        width: 54px; height: 54px; border-radius: 16px;
+        border: 1px solid var(--border);
+        background:
+          radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.35), transparent 60%),
+          linear-gradient(135deg, rgba(124,92,255,0.35), rgba(46,229,157,0.22));
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      }
+      .quick h3{ margin: 14px 0 6px; font-size: 15px; }
+      .quick p{ margin: 0; color: var(--muted2); font-size: 14px; }
+      .mini-grid{ display:grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+      .mini{
+        padding: 12px; border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+      }
+      .mini .label{ color: var(--muted2); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;}
+      .mini .value{ margin-top: 4px; font-weight: 900; font-size: 14px; }
+
+      /* sections */
+      section{ padding: 26px 0; }
+      .section-head{
+        display:flex; align-items:flex-end; justify-content:space-between;
+        gap: 12px; margin-bottom: 14px;
+      }
+      .section-head h2{ margin:0; font-size: 20px; letter-spacing: -0.2px; }
+      .section-head p{ margin:0; color: var(--muted2); font-size: 14px; }
+
+      .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+      .card{
+        grid-column: span 6;
+        padding: 18px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+      }
+      .card:hover{ background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.18); }
+
+      .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+      .tag{
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        background: rgba(255,255,255,0.03);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .project-title{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+      .project-title h3{ margin:0; font-size: 16px; letter-spacing: -0.2px; }
+      .project-title a{
+        color: var(--muted);
+        font-weight: 900; font-size: 13px;
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.03);
+      }
+      .project-title a:hover{ color: var(--text); background: rgba(255,255,255,0.06); }
+
+      .meta{ margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+      .bullets{ margin: 12px 0 0; padding-left: 18px; color: var(--muted); }
+      .bullets li{ margin: 6px 0; }
+
+      .timeline{ display:grid; gap: 12px; }
+      .role{
+        padding: 18px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+      }
+      .role-top{ display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; }
+      .role h3{ margin:0; font-size: 16px; }
+      .role .where{ margin: 4px 0 0; color: var(--muted2); font-weight: 800; font-size: 14px; }
+      .role .when{ color: var(--muted2); font-weight: 900; font-size: 13px; }
+      .role p{ margin: 10px 0 0; color: var(--muted); }
+
+      footer{ padding: 26px 0 40px; color: var(--muted2); font-size: 13px; }
+
+      @media (max-width: 900px){
+        .hero{ grid-template-columns: 1fr; }
+        .card{ grid-column: span 12; }
+      }
+      @media (max-width: 560px){
+        .nav-links{ display:none; }
+        .hero-left{ padding: 20px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <div class="container">
+        <div class="nav-inner">
+          <div class="brand">
+            <div class="dot"></div>
+            <span>Damien Loo</span>
+            <span class="pill">Bioengineering • UCSD</span>
+          </div>
+
+          <nav class="nav-links" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+          </nav>
+
+          <div class="cta">
+            <a class="btn" href="mailto:you@email.com" title="Email">Email</a>
+            <a class="btn primary" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="container">
+        <div class="hero">
+          <div class="panel hero-left">
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 10px;">
+              <span class="pill">San Diego, CA</span>
+              <span class="pill">Born & raised in Hong Kong</span>
+              <span class="pill">Bioengineering @ UCSD</span>
+            </div>
+
+            <h1>Bioengineer focused on practical sensing, signals, and biomechanics.</h1>
+            <p class="sub">
+              I moved from Hong Kong to San Diego three years ago to study bioengineering at UC San Diego.
+              I like building things that connect biology to hardware: measuring small signals reliably, reducing noise,
+              and turning data into something you can use.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#projects">See projects</a>
+              <a class="btn" href="#experience">Experience</a>
+              <a class="btn" href="https://github.com/your-handle" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            </div>
+          </div>
+
+          <aside class="panel quick">
+            <div>
+              <div class="avatar" aria-hidden="true"></div>
+              <h3>Quick snapshot</h3>
+              <p>What you’ll get from working with me.</p>
+
+              <div class="mini-grid">
+                <div class="mini">
+                  <div class="label">Strengths</div>
+                  <div class="value">Hands-on build + clean analysis</div>
+                </div>
+                <div class="mini">
+                  <div class="label">Tools</div>
+                  <div class="value">MATLAB • Python • Arduino</div>
+                </div>
+                <div class="mini">
+                  <div class="label">Outside lab</div>
+                  <div class="value">Muay Thai • MMA • Outdoors</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>About me</h2>
+              <p>Short and real — the stuff people remember.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card" style="grid-column: span 7;">
+              <h3 style="margin:0 0 8px; font-size:16px;">Who I am</h3>
+              <p class="meta" style="margin-top:0;">
+                I’m a UCSD bioengineering student interested in bioinstrumentation, imaging, and biomechanics.
+                I’m most comfortable when I can go from idea → circuit/experiment → analysis, and explain it clearly.
+              </p>
+              <p class="meta">
+                Outside school, I train Muay Thai and MMA and compete as an amateur fighter. I also like being outdoors
+                with friends — it keeps me grounded and balanced.
+              </p>
+              <div class="tags">
+                <span class="tag">Bioinstrumentation</span>
+                <span class="tag">Signals</span>
+                <span class="tag">Biomechanics</span>
+                <span class="tag">Imaging</span>
+                <span class="tag">Prototyping</span>
+              </div>
+            </div>
+
+            <div class="card" style="grid-column: span 5;">
+              <h3 style="margin:0 0 8px; font-size:16px;">What I’m looking for</h3>
+              <p class="meta" style="margin:0;">
+                I’m always down to meet people working on medical devices, sensing, imaging, or human performance.
+                If you’re building something in that space, I’d love to learn what problems you’re solving.
+              </p>
+              <div class="tags">
+                <span class="tag">Internships</span>
+                <span class="tag">Research</span>
+                <span class="tag">Collaboration</span>
+              </div>
+
+              <div style="height:12px;"></div>
+              <h3 style="margin:0 0 8px; font-size:16px;">Contact</h3>
+              <div class="tags">
+                <a class="tag" href="mailto:you@email.com">you@email.com</a>
+                <a class="tag" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="tag" href="https://github.com/your-handle" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Projects</h2>
+              <p>Technical work, but explained like a human.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <article class="card">
+              <div class="project-title">
+                <h3>Affordable Photoacoustic Imaging (Feasibility + Technical Design)</h3>
+                <a href="#" target="_blank" rel="noreferrer">Notes</a>
+              </div>
+              <p class="meta">
+                A technical and feasibility study aimed at lowering the cost barrier for photoacoustic imaging while
+                keeping clinically useful performance.
+              </p>
+              <ul class="bullets">
+                <li>System-level tradeoffs: light source, safety constraints, and signal chain</li>
+                <li>Cost/performance framing: what matters most for “usable” images</li>
+                <li>Clear assumptions + back-of-the-envelope validation</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Imaging</span><span class="tag">PAI</span><span class="tag">System design</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="project-title">
+                <h3>Punch Contact Mechanics (Biomechanics)</h3>
+                <a href="#" target="_blank" rel="noreferrer">Write-up</a>
+              </div>
+              <p class="meta">
+                Analyzing punch contact to understand force transmission, impact duration, and how glove/target properties
+                change what the body experiences.
+              </p>
+              <ul class="bullets">
+                <li>Modeling contact mechanics and impact impulse</li>
+                <li>Linking measurable outputs to technique + equipment factors</li>
+                <li>Engineering-style reasoning grounded in real sport constraints</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Biomechanics</span><span class="tag">Dynamics</span><span class="tag">Modeling</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="project-title">
+                <h3>Vision-Controlled Motor (BENG 152 Lab)</h3>
+                <a href="#" target="_blank" rel="noreferrer">Demo</a>
+              </div>
+              <p class="meta">
+                A vision-driven control project: detect a visual cue and convert it into stable motor output.
+                Built to behave predictably (no jittery “almost triggers”).
+              </p>
+              <ul class="bullets">
+                <li>Real-time detection → control signal mapping</li>
+                <li>Filtering + hysteresis for stability</li>
+                <li>Embedded implementation with clear tuning knobs</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Controls</span><span class="tag">Arduino</span><span class="tag">Prototyping</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="project-title">
+                <h3>Paper Review: Metabolites + Cardiac Signals in Diabetes Monitoring</h3>
+                <a href="#" target="_blank" rel="noreferrer">Review</a>
+              </div>
+              <p class="meta">
+                Review of approaches that combine chemical (metabolite) inputs and physical (cardiac) signals to improve
+                diabetes monitoring and decision-making.
+              </p>
+              <ul class="bullets">
+                <li>Comparing sensors, modalities, and integration strategies</li>
+                <li>Strengths/limitations: noise sources, calibration, and usability</li>
+                <li>What’s missing + what would make it clinically stronger</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Biosensing</span><span class="tag">Diabetes</span><span class="tag">Literature</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Experience</h2>
+              <p>Add roles as you go — keep it simple and high-signal.</p>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="role">
+              <div class="role-top">
+                <div>
+                  <h3>Bioengineering Student</h3>
+                  <div class="where">UC San Diego • Bioengineering</div>
+                </div>
+                <div class="when">2023 – Present</div>
+              </div>
+              <p>
+                Coursework and labs centered on bioinstrumentation, signal acquisition/conditioning, and analysis.
+                Comfortable moving between circuits, experiments, and data workflows (MATLAB/Python).
+              </p>
+              <div class="tags">
+                <span class="tag">Signals</span><span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">Arduino</span>
+              </div>
+            </div>
+
+            <div class="role">
+              <div class="role-top">
+                <div>
+                  <h3>Amateur Muay Thai & MMA Competitor</h3>
+                  <div class="where">San Diego</div>
+                </div>
+                <div class="when">Ongoing</div>
+              </div>
+              <p>
+                Consistent training and competition sharpen how I handle pressure, learn fast, and stay disciplined.
+                It’s also what pulled me deeper into biomechanics and performance measurement.
+              </p>
+              <div class="tags">
+                <span class="tag">Discipline</span><span class="tag">Performance</span><span class="tag">Coachability</span>
+              </div>
+            </div>
+
+            <!-- Duplicate this block for internships/research roles -->
+            <!--
+            <div class="role">
+              <div class="role-top">
+                <div>
+                  <h3>Role Title</h3>
+                  <div class="where">Company/Lab • Team</div>
+                </div>
+                <div class="when">Month YYYY – Month YYYY</div>
+              </div>
+              <p>
+                One or two sentences on what you built and the impact (numbers if possible).
+              </p>
+              <div class="tags">
+                <span class="tag">Skill</span><span class="tag">Tool</span><span class="tag">Domain</span>
+              </div>
+            </div>
+            -->
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <div style="display:flex; justify-content:space-between; gap: 12px; flex-wrap: wrap;">
+            <span>© <span id="year"></span> Damien Loo</span>
+            <span>Made to share quickly at networking events.</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
